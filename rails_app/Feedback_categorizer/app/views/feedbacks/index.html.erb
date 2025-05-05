@@ -1,0 +1,23 @@
+<h1>Developer Feedback</h1>
+
+<%= form_with url: feedbacks_path, method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :text, "Feedback" %><br>
+    <%= form.text_area :text, rows: 3 %>
+  </div>
+  <div>
+    <%= form.label :categories, "Categories (comma-separated)" %><br>
+    <%= form.text_field :categories %>
+  </div>
+  <%= form.submit "Submit Feedback" %>
+<% end %>
+
+<h2>All Feedback</h2>
+<ul>
+  <% @feedbacks.each do |fb| %>
+    <li>
+      <strong><%= fb.text %></strong><br>
+      Categories: <%= fb.categories.join(", ") %>
+    </li>
+  <% end %>
+</ul>
